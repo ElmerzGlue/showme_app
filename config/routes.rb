@@ -5,5 +5,5 @@ Rails.application.routes.draw do
 
   get 'static/contact'
 
-  root 'application#hello'
+  root 'static#home'
 end
