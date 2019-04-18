@@ -10,17 +10,8 @@
 
   <body>
 
-  	<header class="navbar">
-  		<nav>
-	  		<div class="container">
-	  			<ul class="nav navbar-nav">
-	  				<li><%= link_to "Home", home_path %></li>
-	  				<li><%= link_to "About", about_path %></li>
-	  				<li><%= link_to "Contact", contact_path %></li>
-	  			</ul>
-	  		</div>
-  		</nav>
-  	</header>
+  	<%= render 'layouts/shim' %>
+  	<%= render 'layouts/header' %>
 
   	<div class="container">
   		<%= yield %>
