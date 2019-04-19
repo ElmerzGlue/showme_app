@@ -5,8 +5,10 @@ Rails.application.routes.draw do
 
   get '/contact', to: 'static#contact'
 
+  get '/signup', to: 'static#signup'
+
   root 'static#home'
 
   resources :users
-  
+
 end
