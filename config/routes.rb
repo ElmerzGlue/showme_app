@@ -6,4 +6,7 @@ Rails.application.routes.draw do
   get '/contact', to: 'static#contact'
 
   root 'static#home'
+
+  resources :users
+  
 end
