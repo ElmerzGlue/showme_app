@@ -10,8 +10,6 @@ end
 gem 'rails', '~> 5.1.7'
 # Use  bootstrap-sass for styling
 gem 'bootstrap-sass'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', '1.3.13' #version required for use on windows with mingw32
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -45,6 +43,9 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
+
+  # Use sqlite3 as the database for Active Record
+gem 'sqlite3', '1.3.13' #version required for use on windows with mingw32
 end
 
 group :development do
