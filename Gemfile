@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 2.5'
 group :production do
 	#Use Postgres for production on heroku
 	gem 'pg', '0.20.0'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -45,7 +46,7 @@ group :development, :test do
   gem 'selenium-webdriver'
 
   # Use sqlite3 as the database for Active Record
-gem 'sqlite3', '1.3.13' #version required for use on windows with mingw32
+  gem 'sqlite3', '1.3.13' #version required for use on windows with mingw32
 end
 
 group :development do
