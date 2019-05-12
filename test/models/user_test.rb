@@ -1,8 +1,9 @@
 require 'test_helper'
+require 'bcrypt'
 
 class UserTest < ActiveSupport::TestCase
   def setup
-  	@user = User.new(first_name: 'bob', last_name:'bobertson', email: 'bob@example.com', school: 'Harvard')
+  	@user = User.new(first_name: 'bob', last_name:'bobertson', email: 'bob@example.com', school: 'Harvard', pass_hash: )
   end
 
   test "should be valid" do
