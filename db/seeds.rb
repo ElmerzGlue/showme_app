@@ -3,4 +3,4 @@
 
 # Create the admin user
 User.create({name: 'Tournament Admin', school: 'N/A', email: 'showmemocktrial@gmail.com', 
-	password: 'password', password_confirmation: 'password'})
+	password: 'password123', password_confirmation: 'password123'})
