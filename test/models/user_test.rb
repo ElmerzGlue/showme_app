@@ -1,31 +1,27 @@
 require 'test_helper'
-require 'bcrypt'
 
 class UserTest < ActiveSupport::TestCase
   def setup
-  	@user = User.new(first_name: 'bob', last_name:'bobertson', email: 'bob@example.com', school: 'Harvard', pass_hash: )
+  	@user = User.new(name: 'bob bobertson', email: 'bob@example.com', school: 'Harvard', 
+      password: 'password', password_confirmation: 'password' )
   end
 
   test "should be valid" do
   	assert @user.valid?
   end
 
-  test "first_name should be present" do
-  	@user.first_name = '   '
+  test "name should be present" do
+  	@user.name = '   '
   	assert_not @user.valid?
   end
 
-  test "last_name should be present" do
-  	@user.last_name = '    '
-  	assert_not @user.valid?
-  end
 
   test "email should be valid" do
   	invalids = ['email@email', 'personatperson.com', '@gmail.com']
   	invalids.each{|t|
   		@user.email = t
   		assert_not @user.valid?
-  	}
+    }
   end
 
   test "valid emails should be valid" do
@@ -33,7 +29,7 @@ class UserTest < ActiveSupport::TestCase
   	valids.each { |t| 
   		@user.email = t
   		assert @user.valid?
-  	}
+    }
   end
 
 end
