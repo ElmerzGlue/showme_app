@@ -1,0 +1,27 @@
+<% provide(:page_title, 'Management') %>
+
+<table class="table">
+
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Admin Status</th>
+  </tr>
+
+  <% User.find_each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.phone %></td>
+      <td>
+        <%= if user.admin?
+                "Yes"
+              else
+                "No"
+              end %>
+      </td>
+    </tr>
+  <% end %>
+
+</table>

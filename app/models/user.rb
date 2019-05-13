@@ -22,4 +22,8 @@ class User < ApplicationRecord
 	# validates :coach_email, format: {with: EMAIL_REGEX}, allow_nil: true
 	# validates :coach_phone, format: {with: PHONE_REGEX}, allow_nil: true
 
+	def admin?
+		admin
+	end
+
 end

@@ -1,26 +1,27 @@
 <% provide(:page_title, 'Profile') %>
-<table class="table">
 
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Phone</th>
-    <th>Admin Status</th>
-  </tr>
+<h1>Profile</h1>
 
-  <% User.find_each do |user| %>
+<div class="container">
+  <table class="table">
     <tr>
-      <td><%= user.name %></td>
-      <td><%= user.email %></td>
-      <td><%= user.phone %></td>
-      <td>
-        <%= if user.admin
-                "Yes"
-              else
-                "No"
-              end %>
-      </td>
+      <td>Name:</td>
+      <td><%= current_user.name %></td>
     </tr>
-  <% end %>
 
-</table>
+    <tr>
+      <td>Email:</td>
+      <td><%= current_user.email %></td>
+    </tr>
+
+    <tr>
+      <td>Phone:</td>
+      <td><%= current_user.phone %></td>
+    </tr>
+
+    <tr>
+      <td>School:</td>
+      <td><%= current_user.school %></td>
+    </tr>
+  </table>
+</div>

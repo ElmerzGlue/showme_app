@@ -13,15 +13,15 @@
 ActiveRecord::Schema.define(version: 20190513041535) do
 
   create_table "users", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "email", null: false
-    t.string "phone", null: false
-    t.string "school", null: false
-    t.string "password_digest", null: false
+    t.string "name"
+    t.string "email"
+    t.string "phone"
+    t.string "school"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "teams", null: false
+    t.integer "teams"
     t.boolean "admin"
+    t.string "password_digest"
   end
 
 end

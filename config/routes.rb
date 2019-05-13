@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   get '/profile', to: 'sessions#profile'
 
+  get '/list', to: 'sessions#list'
+
   root 'static#home'
 
   resources :users

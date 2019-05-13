@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       #Successful login
       login user
       flash[:success] = 'Hello, ' + current_user.name + '!'
-      redirect_to user
+      redirect_to profile_path
     else
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new'
@@ -21,10 +21,13 @@ class SessionsController < ApplicationController
   end
 
   def profile
-    if current_user.admin
+  end
+
+  def list
+    if current_user.admin?
       render 'list'
     else
-      render 'profile'
+      redirect_to current_user
     end
   end
 
