@@ -1,7 +1,9 @@
 class User < ApplicationRecord
 
-	before_save{email.downcase!}
+	has_many :teams
+	has_many :students, through::teams
 
+	before_save{email.downcase!}
 
 	EMAIL_REGEX = /\A[\w+\-.]+@[\da-z\.\-]+\.[a-z]+\z/
 	PHONE_REGEX = /\A\(?\d{3}\)?\s?\d{3}\-?\d{4}\z/
@@ -13,7 +15,6 @@ class User < ApplicationRecord
 	validates :phone, format: {with: PHONE_REGEX}
 
 	validates :school, presence: true
-	validates :teams, presence: true, numericality: {greater_than: 0}
 
 	validates :password, presence: true, length: {minimum: 7}
 
