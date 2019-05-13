@@ -10,25 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190418200748) do
+ActiveRecord::Schema.define(version: 20190513041535) do
 
   create_table "users", force: :cascade do |t|
-  	# Required Fields
     t.string "name", null: false
     t.string "email", null: false
     t.string "phone", null: false
     t.string "school", null: false
-
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-
     t.integer "teams", null: false
-
-    # Optional Fields
-    # t.string "coach_name"
-    # t.string "coach_email"
-    # t.string "coach_phone"
+    t.boolean "admin"
   end
 
 end
