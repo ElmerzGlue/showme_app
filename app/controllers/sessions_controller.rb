@@ -20,4 +20,12 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
+  def profile
+    if current_user.admin
+      render 'list'
+    else
+      render 'profile'
+    end
+  end
+
 end
