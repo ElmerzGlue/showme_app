@@ -1,12 +1,21 @@
 <header class="navbar">
 	<nav>
-  		<div class="container">
+  		<div class="container row">
   			<ul class="nav navbar-nav">
   				<li><%= link_to "Home", root_path %></li>
   				<li><%= link_to "About", about_path %></li>
   				<li><%= link_to "Contact", contact_path %></li>
   				<li><%= link_to "Sign Up!", signup_path %></li>
+          <li><%= link_to "Login", login_path %></li>
   			</ul>
+
+        <% if logged_in? %>
+          <ul class="nav navbar-nav align-items-right">
+            <li><%= link_to "Account", '#' %></li>
+            <li><%= link_to "Logout", logout_path, method: :delete%></li>
+          </ul>
+        <% end %>
+
   		</div>
 	</nav>
 </header>
