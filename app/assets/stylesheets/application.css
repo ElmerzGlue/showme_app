@@ -13,3 +13,29 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+    background-image: url(team_large.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-sizing: border-box;
+}
+
+.content-panel{
+    background-color: whitesmoke;
+    border-radius: 20px;
+}
+
+.navbar {
+    background-color: white;
+}
+
+h1 {
+    color: saddlebrown;
+    font-family: Monaco;
+    padding: 10px;
+    background-color: white;
+    border-radius: 20px;
+    font-size: 100px;
+    text-align: center;
+}
