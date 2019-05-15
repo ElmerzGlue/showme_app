@@ -29,6 +29,9 @@ gem 'jbuilder', '~> 2.5'
 # Use bcrypt for passwords
 gem 'bcrypt'
 
+# Use dotenv for environment variables (secret keys)
+gem 'dotenv-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

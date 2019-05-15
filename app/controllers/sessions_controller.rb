@@ -24,10 +24,14 @@ class SessionsController < ApplicationController
   end
 
   def list
-    if current_user.admin?
+    if current_user&.admin?
       render 'list'
     else
-      redirect_to current_user
+      if current_user
+        redirect_to current_user
+      else
+        redirect_to root_path
+      end
     end
   end
 

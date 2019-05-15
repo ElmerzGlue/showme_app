@@ -11,26 +11,29 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		@user.admin = false
-		if @user.save && num_teams_param > 0
+		if num_teams_param
 			for n in 0..num_teams_param-1
-				@user.teams.create(user_id: @user.id)
+				@user.teams << Team.new
 			end
-			flash[:success] = "Thank you for registering!"
-			redirect_to @user
+			if @user.save
+				flash[:success] = "Thank you for registering!"
+				redirect_to @user
+			else
+				render 'new'
+			end
 		else
-			@user.destroy
 			render 'new'
 		end
 	end
 
 	private
 		def user_params
-			params.require(:user).permit(:name, :email, :phone,
+			params.require(:new_user).except(:num_teams).permit(:name, :email, :phone,
 				:school, :password, :password_confirmation)
 		end
 
   	def num_teams_param
-			params[:user][:teams].to_i
+			params.require(:new_user)[:num_teams].to_i
 		end
 
 end

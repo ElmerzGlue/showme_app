@@ -1,7 +1,19 @@
+class TeamValidator < ActiveModel::Validator
+	def validate(user)
+		if user.teams.length < 1
+			user.errors[:teams] << "must be at least 1" unless user.admin?
+		end
+		if user.teams.length > 10
+			user.errors[:teams] << "cannot be more than 10" unless user.admin?
+		end
+	end
+end
+
+
 class User < ApplicationRecord
 
-	has_many :teams
-	has_many :students, through::teams
+	has_many :teams, dependent: :destroy, inverse_of: :user
+	has_many :students, through: :teams
 
 	before_save{email.downcase!}
 
@@ -14,17 +26,16 @@ class User < ApplicationRecord
 	validates :email, format: {with: EMAIL_REGEX}, uniqueness: true
 	validates :phone, format: {with: PHONE_REGEX}
 
+	include ActiveModel::Validations
+	validates_with TeamValidator
+
 	validates :school, presence: true
 
 	validates :password, presence: true, length: {minimum: 7}
-
-	# Optional fields
-	# coach_name, no validation
-	# validates :coach_email, format: {with: EMAIL_REGEX}, allow_nil: true
-	# validates :coach_phone, format: {with: PHONE_REGEX}, allow_nil: true
 
 	def admin?
 		admin
 	end
 
 end
+
