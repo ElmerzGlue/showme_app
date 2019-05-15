@@ -7,8 +7,8 @@
   				<li><%= link_to "Contact", contact_path %></li>
 
           <% unless logged_in? %>
-  				  <li><%= link_to "Sign Up!", signup_path %></li>
             <li><%= link_to "Login", login_path %></li>
+            <li><%= link_to "Register Now!", signup_path, class: 'signup-button' %></li>
           <% else %>
             <li><%= link_to "Profile", profile_path %></li>
             <li><%= link_to "Logout", logout_path, method: :delete%></li>

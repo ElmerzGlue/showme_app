@@ -27,3 +27,9 @@ config/secrets.yml.key
 
 # Ignore environment variables
 .env*
+
+# Ignore images
+*.jpg
+
+# Ignore yarnfile
+yarn.lock

@@ -1,0 +1,92 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+$background: #FAFAFA;
+$primary: saddlebrown;
+$font: "URW Bookman L";
+$secondary_font: "Helvetica Neue";
+
+*{
+  font-family: $font;
+}
+
+.signup-button{
+  background-color: $primary;
+  color: $background;
+  height: 100%;
+  &:hover{
+      background-color: $primary;
+      color: $primary;
+  }
+}
+
+nav{
+  .navbar-nav{
+    color: $primary;
+    a{
+      padding: 25px 30px;
+      font-weight: bold;
+      font-family: $secondary_font;
+    }
+  }
+}
+
+
+.navbar {
+  background-color: $background;
+  position: sticky;
+  top: 0;
+  border-radius: 0;
+  font-size: 16pt;
+  font-family: $secondary_font;
+}
+
+a{
+  color: $primary;
+  &:hover{
+    color: $primary;
+  }
+}
+
+body {
+  /*image fetched in html.erb*/
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-sizing: border-box;
+}
+
+label{
+  font-family: $secondary_font;
+}
+
+.btn{
+  margin: 10px auto;
+}
+
+.text-panel {
+  margin: 20px auto;
+  font-size: 14pt;
+  background-color: $background;
+}
+
+.content-panel{
+  background-color: $background;
+  border-radius: 20px;
+  margin: 30px auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.title-panel {
+  color: $primary;
+  padding: 10px;
+  background-color: $background;
+  border-radius: 20px;
+  font-size: 50pt;
+  text-align: center;
+  min-width: fit-content;
+}
+
+.main-title {
+  font-size: 78pt;
+}

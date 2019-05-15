@@ -9,4 +9,11 @@ module ApplicationHelper
     end
   end
 
+
+    def bg_image(title)
+      asset_path title + '.jpg'
+    rescue Sprockets::Rails::Helper::AssetNotFound
+      asset_path 'default.jpg'
+    end
+
 end

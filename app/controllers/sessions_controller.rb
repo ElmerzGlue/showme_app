@@ -28,10 +28,26 @@ class SessionsController < ApplicationController
       render 'list'
     else
       if current_user
-        redirect_to current_user
+        redirect_to profile_path
       else
         redirect_to root_path
       end
+    end
+  end
+
+  def delete
+    @user_to_delete = User.find_by(id: params[:delete_id])
+    if current_user&.admin? && @user_to_delete.id != current_user.id
+      if @user_to_delete.destroy
+        flash[:success] = @user_to_delete.name + ' deleted.'
+        redirect_back(fallback_location: root_path)
+      else
+      flash[:danger] = @user_to_delete.name + 'was not able to be deleted'
+      redirect_back(fallback_location: root_path)
+      end
+    else
+      flash[:danger] = 'Improper delete request'
+      redirect_back(fallback_location: root_path)
     end
   end
 

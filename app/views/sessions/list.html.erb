@@ -1,12 +1,19 @@
 <% provide(:page_title, 'Management') %>
 
-<table class="table">
+<h1 class="title-panel container">Management</h1>
+
+<table class="table container text-panel">
 
   <tr>
     <th>Name</th>
     <th>Email</th>
     <th>Phone</th>
+    <th>Teams</th>
+    <th>Students</th>
     <th>Admin Status</th>
+    <th>Registration Paid</th>
+    <th></th>
+    <th></th>
   </tr>
 
   <% User.find_each do |user| %>
@@ -14,6 +21,8 @@
       <td><%= user.name %></td>
       <td><%= user.email %></td>
       <td><%= user.phone %></td>
+      <td><%= user.teams.count %></td>
+      <td><%= user.students.count %></td>
       <td>
         <%= if user.admin?
                 "Yes"
@@ -21,6 +30,13 @@
                 "No"
               end %>
       </td>
+      <td><%= if user.paid_registration
+                "Yes"
+              else
+                "No"
+              end %>
+      </td>
+      <td><%= button_to "Delete", {action: 'delete', delete_id: user.id}, method: :delete, data: {confirm: 'Are you sure? This action cannot be undone'} %></td>
     </tr>
   <% end %>
 

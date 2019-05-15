@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   delete '/logout', to: 'sessions#destroy'
 
+  delete '/delete', to: 'sessions#delete'
+
   get '/profile', to: 'sessions#profile'
 
   get '/list', to: 'sessions#list'
