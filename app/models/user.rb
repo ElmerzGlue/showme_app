@@ -31,7 +31,7 @@ class User < ApplicationRecord
 
 	validates :school, presence: true
 
-	validates :password, presence: true, length: {minimum: 7}
+	validates :password, presence: true, length: {minimum: 7}, unless: :password_digest
 
 	def admin?
 		admin

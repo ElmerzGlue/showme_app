@@ -37,6 +37,11 @@
               end %>
       </td>
       <td><%= button_to "Delete", {action: 'delete', delete_id: user.id}, method: :delete, data: {confirm: 'Are you sure? This action cannot be undone'} %></td>
+      <td>
+        <% unless user.paid_registration %>
+          <%= button_to "Mark as Paid", {action: 'pay_registration', pay_id: user.id}, data: {confirm: 'Are you sure?'} %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 
