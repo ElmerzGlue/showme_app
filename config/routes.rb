@@ -4,6 +4,12 @@ Rails.application.routes.draw do
 
   get '/contact', to: 'static#contact'
 
+  get '/rules', to: 'static#rules'
+
+  get '/rules/ShowMeCompRules', to: 'static#get_rules'
+
+  get '/rules/ShowMeRulesEvidence', to: 'static#get_rules_evidence'
+
   get '/signup', to: 'users#new'
 
   post '/signup', to: 'users#create'
