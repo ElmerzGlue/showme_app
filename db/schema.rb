@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190513181933) do
+ActiveRecord::Schema.define(version: 20190516212725) do
 
   create_table "students", force: :cascade do |t|
     t.integer "team_id"
@@ -37,6 +37,9 @@ ActiveRecord::Schema.define(version: 20190513181933) do
     t.string "password_digest"
     t.boolean "paid_registration"
     t.boolean "paid_tournament"
+    t.string "activation_digest"
+    t.boolean "activated", default: false
+    t.datetime "activated_at"
   end
 
 end
