@@ -33,3 +33,6 @@ config/secrets.yml.key
 
 # Ignore yarnfile
 yarn.lock
+
+# Ignore .idea from RubyMine
+.idea/*
