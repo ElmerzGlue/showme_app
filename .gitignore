@@ -26,7 +26,7 @@
 config/secrets.yml.key
 
 # Ignore environment variables
-.env*
+*.env
 
 # Ignore images
 *.jpg
@@ -35,4 +35,4 @@ config/secrets.yml.key
 yarn.lock
 
 # Ignore .idea from RubyMine
-.idea/*
+/.idea/*
