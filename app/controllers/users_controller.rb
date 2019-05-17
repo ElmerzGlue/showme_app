@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
 	def show
-		@user = User.find(params[:id])
+		redirect_to root_path
+		# @user = User.find(params[:id])
 	end
 
 	def new
@@ -16,8 +17,9 @@ class UsersController < ApplicationController
 				@user.teams << Team.new
 			end
 			if @user.save
-				flash[:success] = "Thank you for registering!"
-				redirect_to @user
+				UserMailer.activation(@user).deliver_now
+				flash[:success] = "Thank you for registering! Please check your email to activate your account."
+				redirect_to root_url
 			else
 				render 'new'
 			end
