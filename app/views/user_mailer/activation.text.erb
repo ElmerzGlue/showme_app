@@ -5,3 +5,5 @@ Hi <%= @user.name %>,
 Welcome to the Show Me Mock Trial Invitational Tournament! Click on the link below (or paste into a browser) to activate your account:
 
 <%= edit_activation_url(@user.activation_token, email: @user.email) %>
+
+This is an auto-generated email. Please do not reply.

@@ -21,5 +21,8 @@ class StaticController < ApplicationController
     send_file"#{Rails.root}/public/files/rules_of_evidence.pdf", filename: 'ShowMeRulesEvidence.pdf',
               type: :pdf, disposition: :inline
   end
+
+  def rule_highlights
+  end
   
 end

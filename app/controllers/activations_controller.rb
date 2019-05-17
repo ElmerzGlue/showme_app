@@ -12,4 +12,8 @@ class ActivationsController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def resend
+
+  end
 end

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get '/rules/ShowMeRulesEvidence', to: 'static#get_rules_evidence'
 
+  get '/rules/highlights', to: 'static#rule_highlights'
+
   get '/signup', to: 'users#new'
 
   post '/signup', to: 'users#create'
@@ -27,6 +29,8 @@ Rails.application.routes.draw do
   get '/profile', to: 'sessions#profile'
 
   get '/list', to: 'sessions#list'
+
+  get '/resend', to: 'sessions#resend'
 
   root 'static#home'
 

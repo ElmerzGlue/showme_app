@@ -53,6 +53,11 @@ class User < ApplicationRecord
 		BCrypt::Password.new(activation_digest).is_password?(token)
 	end
 
+	def redo_activation_digest
+		create_activation_digest
+		save
+	end
+
 	private
 		def create_activation_digest
 			self.activation_token = User.new_token

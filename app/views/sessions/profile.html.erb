@@ -2,7 +2,7 @@
 
 <h1 class="title-panel container">Profile</h1>
 
-<div class="text-panel container">
+<div class="content-panel container">
   <table class="table">
     <tr>
       <td>Name:</td>
@@ -23,5 +23,47 @@
       <td>School:</td>
       <td><%= current_user.school %></td>
     </tr>
+
+    <tr>
+      <td>Teams:</td>
+      <td><%= current_user.teams.count %></td>
+    </tr>
+
+    <tr>
+      <td>Registration Due: </td>
+      <td>
+        <%= if current_user.paid_registration
+              'Paid'
+            else
+              '$' + (current_user.teams.count * 25).to_s + ' ($25 per team)'
+            end %>
+      </td>
+    </tr>
   </table>
+
+  <hr>
+
+  <p>
+    Your to-do list:
+  </p>
+
+  <ul style="list-style-type: disc;">
+    <% if !current_user.paid_registration %>
+      <li>
+        Pay your registration fee of $25 per team to reserve your spot. Payment can be made through
+        <%= link_to 'Venmo', 'https://venmo.com/account/sign-in' %> or
+        <%= link_to 'Paypal', 'https://www.paypal.com/myaccount/summary/' %>
+        to showmemocktrial@gmail.com. If you have already paid, please be aware that it may take up to 3 business days
+        to process your payment. If you believe there has been an error or cannot use either of these payment opetions,
+        please email
+        <%= mail_to 'showmemocktrial@gmail.com' %>.
+        A program fee of $15 per student will be due September 10.
+      </li>
+    <% else %>
+      <li>
+        You are up to date! Be on the lookout for the team form, which will be released to this page soon. There will
+        also be a program fee of $15 per student due September 10.
+      </li>
+    <% end %>
+  </ul>
 </div>
