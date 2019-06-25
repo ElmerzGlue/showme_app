@@ -38,4 +38,4 @@ yarn.lock
 /.idea/*
 
 # Ignore public assets
-/public/assets/*
+public/assets/*
