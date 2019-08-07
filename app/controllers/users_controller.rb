@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 		end
 
   	def num_teams_param
-			params.require(:new_user)[:num_teams].to_i
-		end
+		params.require(:new_user)[:num_teams].to_i
+	end
 
 end
