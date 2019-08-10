@@ -2,6 +2,6 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
 # Create the admin user
-User.create({name: 'Tournament Admin', phone: '(314) 555-1234', 
-	email: 'showmemocktrial@gmail.com', school: 'N/A',
-	password: 'password123', password_confirmation: 'password123', admin: true})
+User.create({name: 'Tournament Admin', phone: ENV["ADMIN_PHONE"], email: 'showmemocktrial@gmail.com',
+             school: 'N/A', password: ENV["ADMIN_PASSWORD"], password_confirmation: ENV["ADMIN_PASSWORD"], admin: true,
+             activated: true, paid_registration: true, paid_tournament: true, activated_at: Time.zone.now})

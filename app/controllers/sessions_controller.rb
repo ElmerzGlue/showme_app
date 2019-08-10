@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
       flash[:success] = 'Hello, ' + current_user.name + '!'
       redirect_to profile_path
     else
+      #Unsuccessful
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new'
     end
@@ -21,6 +22,11 @@ class SessionsController < ApplicationController
   end
 
   def profile
+    if activated?
+      render 'profile'
+    else
+      render 'activate'
+    end
   end
 
   def list
@@ -60,6 +66,15 @@ class SessionsController < ApplicationController
     else
       flash[:danger] = 'Invalid Request: If you are a tournament administrator, please contact the server admin.'
       redirect_back(fallback_location: root_path)
+    end
+  end
+
+  def resend
+    if current_user
+      current_user.redo_activation_digest
+      UserMailer.activation(current_user).deliver_now
+      flash[:success] = 'Resent activation email.'
+      redirect_to root_path
     end
   end
 

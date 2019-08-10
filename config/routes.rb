@@ -10,6 +10,12 @@ Rails.application.routes.draw do
 
   get '/rules/ShowMeRulesEvidence', to: 'static#get_rules_evidence'
 
+  get '/rules/highlights', to: 'static#rule_highlights'
+
+  get '/case', to: 'static#case'
+
+  get '/case/download', to: 'static#get_case'
+
   get '/signup', to: 'users#new'
 
   post '/signup', to: 'users#create'
@@ -28,10 +34,14 @@ Rails.application.routes.draw do
 
   get '/list', to: 'sessions#list'
 
+  get '/resend', to: 'sessions#resend'
+
   root 'static#home'
 
   resources :users
 
   resources :teams
+
+  resources :activations, only: [:edit]
 
 end

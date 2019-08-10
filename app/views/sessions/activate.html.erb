@@ -1,0 +1,11 @@
+<% provide(:page_title, 'Profile') %>
+<div class="container title-panel">Profile</div>
+
+<div class="container content-panel">
+  <p>
+    Your account is not activated. Please check your email at <%= current_user.email %> for your activation link.
+  </p>
+  <p>
+    Didn't receive a link? <%= link_to 'Click here', 'resend' %> to resend.
+  </p>
+</div>
