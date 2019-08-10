@@ -15,8 +15,13 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def activated?
+    current_user&.activated
+  end
+
   def logout
     session.delete(:id)
     @current_user = nil
   end
+
 end

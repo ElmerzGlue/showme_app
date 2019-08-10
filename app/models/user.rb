@@ -12,10 +12,13 @@ end
 
 class User < ApplicationRecord
 
+	attr_accessor :activation_token
+
 	has_many :teams, dependent: :destroy, inverse_of: :user
 	has_many :students, through: :teams
 
 	before_save{email.downcase!}
+	before_create :create_activation_digest
 
 	EMAIL_REGEX = /\A[\w+\-.]+@[\da-z\.\-]+\.[a-z]+\z/
 	PHONE_REGEX = /\A\(?\d{3}\)?\s?\d{3}\-?\d{4}\z/
@@ -36,6 +39,30 @@ class User < ApplicationRecord
 	def admin?
 		admin
 	end
+
+	def User.new_token
+		SecureRandom.urlsafe_base64
+	end
+
+	def User.digest(string)
+		cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
+		BCrypt::Password.create(string, cost: cost)
+	end
+
+	def activates?(token)
+		BCrypt::Password.new(activation_digest).is_password?(token)
+	end
+
+	def redo_activation_digest
+		create_activation_digest
+		save
+	end
+
+	private
+		def create_activation_digest
+			self.activation_token = User.new_token
+			self.activation_digest = User.digest(activation_token)
+		end
 
 end
 

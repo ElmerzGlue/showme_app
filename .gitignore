@@ -26,10 +26,16 @@
 config/secrets.yml.key
 
 # Ignore environment variables
-.env*
+*.env
 
 # Ignore images
 *.jpg
 
 # Ignore yarnfile
 yarn.lock
+
+# Ignore .idea from RubyMine
+/.idea/*
+
+# Ignore public assets
+public/assets/*
