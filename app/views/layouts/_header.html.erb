@@ -1,23 +1,23 @@
-<header class="navbar">
+<header class='navbar navbar-expand flex-column flex-md-row bd-navbar'>
 	<nav>
-  		<div class="container row">
-  			<ul class="nav navbar-nav">
-  				<li><%= link_to "Home", root_path %></li>
-  				<li><%= link_to "About", about_path %></li>
-  				<li><%= link_to "Contact", contact_path %></li>
-          <li><%= link_to "Rules", rules_path %></li>
-          <li><%= link_to "Read the Case", case_path %></li>
+  		<div class="navbar-nav-scroll">
+  			<ul class="nav navbar-nav flex-row">
+  				<li><%= link_to "Home", root_path, class: 'nav-link' %></li>
+  				<li><%= link_to "About", about_path, class: 'nav-link' %></li>
+  				<li><%= link_to "Contact", contact_path, class: 'nav-link' %></li>
+          <li><%= link_to "Rules", rules_path, class: 'nav-link' %></li>
+          <li><%= link_to "Case Materials", case_path, class: 'nav-link' %></li>
 
           <% if !logged_in? %>
-            <li><%= link_to "Login", login_path %></li>
-            <li><%= link_to "Register Now!", signup_path, class: 'signup-button' %></li>
+            <li><%= link_to "Login", login_path, class: 'nav-link' %></li>
+            <li><%= link_to "Register Now!", signup_path, class: 'signup-button nav-link' %></li>
           <% else %>
-            <li><%= link_to "Profile", profile_path %></li>
-            <li><%= link_to "Logout", logout_path, method: :delete%></li>
+            <li><%= link_to "Profile", profile_path, class: 'nav-link' %></li>
+            <li><%= link_to "Logout", logout_path, method: :delete, class: 'nav-link' %></li>
           <% end %>
 
           <% if current_user&.admin? %>
-            <li><%= link_to "Management", list_path %></li>
+            <li><%= link_to "Management", list_path, class: 'nav-link' %></li>
           <% end %>
         </ul>
   		</div>
