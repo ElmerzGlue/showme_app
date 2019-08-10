@@ -12,6 +12,10 @@ Rails.application.routes.draw do
 
   get '/rules/highlights', to: 'static#rule_highlights'
 
+  get '/case', to: 'static#case'
+
+  get '/case/download', to: 'static#get_case'
+
   get '/signup', to: 'users#new'
 
   post '/signup', to: 'users#create'
