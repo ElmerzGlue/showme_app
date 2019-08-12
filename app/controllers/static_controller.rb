@@ -16,7 +16,7 @@ class StaticController < ApplicationController
 
   def get_case
     params[:page_title] = '2019 Case'
-    send_file "#{Rails.root}/public/files/case 8-10.pdf", filename: 'Show Me Mock Trial 2019 Case 8-10-2019.pdf', type: :pdf,
+    send_file "#{Rails.root}/public/files/case 8-11.pdf", filename: 'Show Me Mock Trial 2019 Case 8-10-2019.pdf', type: :pdf,
     disposition: :inline
   end
 
