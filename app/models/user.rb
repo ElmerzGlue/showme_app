@@ -21,7 +21,7 @@ class User < ApplicationRecord
 	before_create :create_activation_digest
 
 	EMAIL_REGEX = /\A[\w+\-.]+@[\da-z\.\-]+\.[a-z]+\z/
-	PHONE_REGEX = /\A\(?\d{3}\)?\s?\d{3}\-?\d{4}\z/
+	PHONE_REGEX = /\A\(?\d{3}\)?\-?\s?\d{3}\-?\s?\d{4}\z/
 	has_secure_password
 
 	# Required fields
