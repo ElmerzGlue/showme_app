@@ -11,6 +11,9 @@ class StaticController < ApplicationController
   def rules
   end
 
+  def schedule
+  end
+
   def case
   end
 
