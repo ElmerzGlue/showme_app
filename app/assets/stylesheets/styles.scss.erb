@@ -99,3 +99,18 @@ label{
 .main-title {
   font-size: 78pt;
 }
+
+.dropdown ul{
+  width: inherit;
+  position: absolute;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    z-index: 1;
+}
+
+.dropdown .dropdown-content {
+    display: none;
+    background-color: $background;
+}

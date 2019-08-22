@@ -3,9 +3,18 @@
   		<div class="navbar-nav-scroll">
   			<ul class="nav navbar-nav flex-row">
   				<li><%= link_to "Home", root_path, class: 'nav-link' %></li>
-  				<li><%= link_to "About", about_path, class: 'nav-link' %></li>
+  				<li class="dropdown">
+            <%= link_to "About", about_path, class: 'nav-link' %>
+            <ul class='nav flex-column'>
+              <li><%= link_to "Info", about_path, class: 'dropdown-content nav-link' %></li>
+              <li><%= link_to "Schedule", schedule_path, class: 'dropdown-content nav-link' %></li>
+              <li><%= link_to "Location", location_path, class: 'dropdown-content nav-link' %></li>
+              <li><%= link_to "Deadlines", deadlines_path, class: 'dropdown-content nav-link' %></li>
+            </ul>
+          </li>
   				<li><%= link_to "Contact", contact_path, class: 'nav-link' %></li>
           <li><%= link_to "Rules", rules_path, class: 'nav-link' %></li>
+          <li><%= link_to "Schedule", schedule_path, class: 'nav-link' %></li>
           <li><%= link_to "Case Materials", case_path, class: 'nav-link' %></li>
 
           <% if !logged_in? %>
