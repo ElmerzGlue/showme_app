@@ -31,7 +31,7 @@ class StaticController < ApplicationController
 
   def get_rules
     params[:page_title] = 'Competition Rules'
-    send_file"#{Rails.root}/public/files/rules.pdf", filename: 'ShowMeCompRules.pdf', type: :pdf,
+    send_file"#{Rails.root}/public/files/rules 9-16.pdf", filename: 'ShowMeCompRules.pdf', type: :pdf,
     disposition: :inline
   end
 
