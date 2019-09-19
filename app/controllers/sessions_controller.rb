@@ -71,13 +71,13 @@ class SessionsController < ApplicationController
   end
 
   def teams
-    if !current_user
-      redirect_to root_path
-    elsif current_user&.admin?
-      @teams = Team.find_each
-    else
-      @teams = Team.find_by_id(current_user.id)
-    end
+    # if !current_user
+    #   redirect_to root_path
+    # elsif current_user&.admin?
+    #   provide(:teams, Team.find_each)
+    # else
+    #   provide(:teams, Team.find_by_id(current_user.id)) 
+    # end
     render 'teams'
   end
 
