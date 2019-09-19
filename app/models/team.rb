@@ -7,7 +7,7 @@ class Team < ApplicationRecord
     registered
   end
 
-  after_initialize do
+  before_create do
     id = Team.createIdentifier
     while Team.find_by(team_identifier: id) != nil
       id = Team.createIdentifier

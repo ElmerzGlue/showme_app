@@ -1,0 +1,29 @@
+<% provide(:page_title, 'Teams') %>
+
+<h1 class="title-panel container">Teams</h1>
+
+<div class="content-panel container">
+    <table class="table">
+        <tr>
+            <th>School</th>
+            <th>Coach</th>
+            <th>Students</th>
+            <th>Team Code</th>
+            <th></th>
+        </tr>
+
+        <% for team in @teams do %>
+            <tr>
+                <td><%= team.user.school %></td>
+                <td><%= team.user.name %></td>
+                <td><%= team.students.count %></td>
+                <td><%= team.team_identifier %></td>
+                <td><%= button_to "Edit", {action: 'edit_team', edit_id: team.id}, method: :get %></td>
+            </tr>
+
+        <% end %>
+
+    </table>
+
+
+</div>

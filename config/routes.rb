@@ -40,6 +40,10 @@ Rails.application.routes.draw do
 
   get '/list', to: 'sessions#list'
 
+  get '/teams', to: 'sessions#teams'
+
+  get '/teams/edit', to: 'sessions#edit_team'
+
   get '/resend', to: 'sessions#resend'
 
   root 'static#home'
