@@ -1,8 +1,17 @@
 <% provide(:page_title, 'Profile') %>
+<%
+  if current_user.admin?
+    teamString = 'View Teams'
+  else
+    teamString = 'View your Teams'
+  end
+%>
 
 <h1 class="title-panel container">Profile</h1>
 
 <div class="content-panel container">
+
+  <strong>Profile Information</strong>
   <table class="table">
     <tr>
       <td>Name:</td>
@@ -26,7 +35,7 @@
 
     <tr>
       <td>Teams:</td>
-      <td><%= current_user.teams.count %></td>
+      <td><%= button_to teamString, teams_path, method: :get %></td>
     </tr>
 
     <tr>

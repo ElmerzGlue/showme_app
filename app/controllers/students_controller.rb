@@ -1,5 +1,12 @@
 class StudentsController < ApplicationController
+    include ApplicationHelper
+
     def delete
+        if Time.zone.now > day_of_comp
+            flash[:danger] = "Competition has started, teams are locked!"
+            redirect_back(fallback_location: root_path)
+            return nil
+        end
         @student_to_delete = Student.find(params[:id])
         if current_user&.admin? || current_user == @student_to_delete.team.user
             if @student_to_delete.destroy

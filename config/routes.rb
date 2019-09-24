@@ -54,7 +54,7 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :teams
+  resources :teams, only: [:delete]
 
   resources :activations, only: [:edit]
 

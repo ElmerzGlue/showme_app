@@ -1,6 +1,16 @@
 class TeamsController < ApplicationController
+    include ApplicationHelper
 
     def show
+        if logged_in?
+            @team = Team.find(params[:id])
+            if current_user.admin? || @team.user == current_user
+                render 'show'
+            end
+        else
+            flash[:danger] = 'Error: Unable to edit team'
+            redirect_to root_path
+        end
     end
 
     def show_register
@@ -21,12 +31,17 @@ class TeamsController < ApplicationController
                 render 'edit'
             end
         else
-            flash[:danger] = 'Error: Unable to edit team'
+            flash[:danger] = 'Error: you are not logged in'
             redirect_to root_path
         end
     end
 
     def addStudent
+        if Time.zone.now > day_of_comp
+            flash[:danger] = "Competition has started, teams are locked!"
+            redirect_back(fallback_location: root_path)
+            return nil
+        end
         @team = Team.find(params[:id])
         if current_user&.admin? || @team.user == current_user
             @student = Student.new
