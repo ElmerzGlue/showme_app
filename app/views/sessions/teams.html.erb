@@ -27,7 +27,7 @@
                 <td><%= team.user.name %></td>
                 <td><%= team.students.count %></td>
                 <td><%= team.team_identifier %></td>
-                <td><%= button_to "Edit", {action: 'edit_team', edit_id: team.id}, method: :get %></td>
+                <td><%= button_to "Edit", {controller: 'teams', action: 'edit', id: team.id}, method: :get %></td>
             </tr>
 
         <% end %>

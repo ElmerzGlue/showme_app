@@ -1,0 +1,29 @@
+<% provide(page_title: 'Edit Team') %>
+
+<div class="content-panel container">
+
+    <%= form_for :student do |f| %>
+        <%= f.text_field :name, class: 'form_control', id: "student_name" %>
+        <%= f.submit "Add Student" %>
+    <% end %>
+
+    <table class="table">
+        <tr>
+            <th>Students</th>
+            <th></th>
+        </tr>
+        <% if @team.students.count == 0 %>
+            <tr>
+                <td>No Students</td>
+                <td></td>
+            </tr>
+        <% else %>
+            <% @team.students.find_each do |student| %>
+                <tr>
+                    <td><%= student.name %></td>
+                    <td><%= button_to "Delete", {controller: 'students', action: 'delete', id: student.id}, method: :delete, data: {confirm: 'Are you sure? This action cannot be undone'} %></td>
+                </tr>
+            <% end %>
+        <% end %>
+    </table>
+</div>

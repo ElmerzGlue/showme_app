@@ -42,7 +42,11 @@ Rails.application.routes.draw do
 
   get '/teams', to: 'sessions#teams'
 
-  get '/teams/edit', to: 'sessions#edit_team'
+  get '/teams/:id/edit', to: 'teams#edit'
+
+  delete '/students/:id/delete', to: 'students#delete'
+
+  post '/teams/:id/edit', to: 'teams#addStudent'
 
   get '/resend', to: 'sessions#resend'
 
