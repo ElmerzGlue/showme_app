@@ -40,6 +40,14 @@ class StaticController < ApplicationController
               type: :pdf, disposition: :inline
   end
 
+  def get_ballot
+    send_file "#{Rails.root}/public/files/Show Me Mock Trial Invitational Ballot.pdf", type: :pdf, disposition: :inline
+  end
+
+  def get_guidelines
+    send_file "#{Rails.root}/public/files/Show Me Mock Trial Invitational Guidelines and Comments.pdf", type: :pdf, disposition: :inline
+  end
+
   def rule_highlights
   end
   

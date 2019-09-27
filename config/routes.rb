@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   get '/case', to: 'static#case'
 
   get '/case/download', to: 'static#get_case'
+
+  get '/ballot', to: 'static#get_ballot'
+
+  get '/comments', to: 'static#get_guidelines'
   
   get '/schedule', to: 'static#schedule'
 
