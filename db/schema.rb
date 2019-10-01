@@ -10,11 +10,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190812022042) do
+ActiveRecord::Schema.define(version: 20190930195634) do
+
+  create_table "ballots", force: :cascade do |t|
+    t.integer "trial_id"
+    t.integer "p_points"
+    t.integer "d_points"
+    t.integer "attorney_1_id"
+    t.integer "attorney_2_id"
+    t.integer "attorney_3_id"
+    t.integer "witness_1_id"
+    t.integer "witness_2_id"
+    t.integer "witness_3_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attorney_1_id"], name: "index_ballots_on_attorney_1_id"
+    t.index ["attorney_2_id"], name: "index_ballots_on_attorney_2_id"
+    t.index ["attorney_3_id"], name: "index_ballots_on_attorney_3_id"
+    t.index ["trial_id"], name: "index_ballots_on_trial_id"
+    t.index ["witness_1_id"], name: "index_ballots_on_witness_1_id"
+    t.index ["witness_2_id"], name: "index_ballots_on_witness_2_id"
+    t.index ["witness_3_id"], name: "index_ballots_on_witness_3_id"
+  end
+
+  create_table "judge_ballots", force: :cascade do |t|
+    t.boolean "p_won"
+    t.integer "trial_id"
+    t.integer "attorney_1_id"
+    t.integer "attorney_2_id"
+    t.integer "attorney_3_id"
+    t.integer "witness_1_id"
+    t.integer "witness_2_id"
+    t.integer "witness_3_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attorney_1_id"], name: "index_judge_ballots_on_attorney_1_id"
+    t.index ["attorney_2_id"], name: "index_judge_ballots_on_attorney_2_id"
+    t.index ["attorney_3_id"], name: "index_judge_ballots_on_attorney_3_id"
+    t.index ["trial_id"], name: "index_judge_ballots_on_trial_id"
+    t.index ["witness_1_id"], name: "index_judge_ballots_on_witness_1_id"
+    t.index ["witness_2_id"], name: "index_judge_ballots_on_witness_2_id"
+    t.index ["witness_3_id"], name: "index_judge_ballots_on_witness_3_id"
+  end
 
   create_table "students", force: :cascade do |t|
     t.integer "team_id"
     t.string "name"
+    t.integer "p_attorney_ranks", default: 0
+    t.integer "d_attorney_ranks", default: 0
+    t.integer "p_witness_ranks", default: 0
+    t.integer "d_witness_ranks", default: 0
     t.index ["team_id"], name: "index_students_on_team_id"
   end
 
@@ -25,7 +70,25 @@ ActiveRecord::Schema.define(version: 20190812022042) do
     t.datetime "updated_at", null: false
     t.string "courtroom_artist"
     t.boolean "registered", default: false
+    t.string "team_identifier", default: "AAA", null: false
+    t.integer "points", default: 0, null: false
+    t.integer "point_differential", default: 0, null: false
+    t.float "ballots", default: 0.0, null: false
     t.index ["user_id"], name: "index_teams_on_user_id"
+  end
+
+  create_table "trials", force: :cascade do |t|
+    t.integer "p_team_id"
+    t.integer "d_team_id"
+    t.boolean "scored", default: false
+    t.integer "ballot_1_id"
+    t.integer "ballot_2_id"
+    t.integer "judge_ballot_id"
+    t.index ["ballot_1_id"], name: "index_trials_on_ballot_1_id"
+    t.index ["ballot_2_id"], name: "index_trials_on_ballot_2_id"
+    t.index ["d_team_id"], name: "index_trials_on_d_team_id"
+    t.index ["judge_ballot_id"], name: "index_trials_on_judge_ballot_id"
+    t.index ["p_team_id"], name: "index_trials_on_p_team_id"
   end
 
   create_table "users", force: :cascade do |t|

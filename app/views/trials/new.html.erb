@@ -1,0 +1,12 @@
+<% provide(:page_title, "Schedule Trial") %>
+<div class='container title-panel'>Schedule Trial</div>
+
+<div class='container content-panel'>
+    <%= form_for(:trial, url: trials_schedule_path) do |f| %>
+        <%= f.label :p_team_id, "Plaintiff Team" %><br>
+        <%= f.select :p_team_id, getOptions, class: 'form-control' %><br>
+        <%= f.label :d_team_id, "Defense Team" %><br>
+        <%= f.select :d_team_id, getOptions, class: 'form-control' %><br><br>
+        <%= f.submit "Schedule Trial" %>
+    <% end %>
+</div>

@@ -1,0 +1,38 @@
+<% provide(:page_title, 'Teams') %>
+<%
+    if !current_user
+      redirect_to root_path
+    elsif current_user&.admin?
+      @teams = Team.all
+    else
+      @teams = current_user.teams
+    end
+%>
+
+<h1 class="title-panel container">Teams</h1>
+
+<div class="content-panel container">
+    <table class="table">
+        <tr>
+            <th>School</th>
+            <th>Coach</th>
+            <th>Students</th>
+            <th>Team Code</th>
+            <th></th>
+        </tr>
+
+        <% @teams.find_each do |team| %>
+            <tr>
+                <td><%= team.user.school %></td>
+                <td><%= team.user.name %></td>
+                <td><%= team.students.count %></td>
+                <td><%= team.team_identifier %></td>
+                <td><%= button_to "Edit", {controller: 'teams', action: 'edit', id: team.id}, method: :get %></td>
+            </tr>
+
+        <% end %>
+
+    </table>
+
+
+</div>

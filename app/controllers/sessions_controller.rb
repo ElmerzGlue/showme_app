@@ -30,15 +30,7 @@ class SessionsController < ApplicationController
   end
 
   def list
-    if current_user&.admin?
-      render 'list'
-    else
-      if current_user
-        redirect_to profile_path
-      else
-        redirect_to root_path
-      end
-    end
+    admin_page('list')
   end
 
   def delete
@@ -75,6 +67,26 @@ class SessionsController < ApplicationController
       UserMailer.activation(current_user).deliver_now
       flash[:success] = 'Resent activation email.'
       redirect_to root_path
+    end
+  end
+
+  def teams
+    # render 'teams'
+  end
+
+  def edit_team
+    
+  end
+
+  def admin_page(page)
+    if current_user&.admin?
+      render page
+    else
+      if current_user
+        redirect_to profile_path
+      else
+        redirect_to root_path
+      end
     end
   end
 

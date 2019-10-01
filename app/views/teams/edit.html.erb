@@ -1,0 +1,51 @@
+<% provide(:page_title, 'Team') %>
+
+<div class="content-panel container">
+
+    <table class='table'>
+        <tr>
+            <th>Team Information</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>Coach</td>
+            <td><%= @team.user.name %></td>
+        </tr>
+        <tr>
+            <td>School</td>
+            <td><%= @team.user.school %></td>
+        </tr>
+    </table>
+
+    <table class="table">
+        <tr>
+            <th>Students</th>
+            <th></th>
+        </tr>
+        <% if @team.students.count == 0 %>
+            <tr>
+                <td>No Students</td>
+                <td></td>
+            </tr>
+        <% else %>
+            <% @team.students.find_each do |student| %>
+                <tr>
+                    <td><%= student.name %></td>
+                    <td>
+                        <% if Time.zone.now < day_of_comp %>
+                            <%= button_to "Delete", {controller: 'students', action: 'delete', id: student.id}, method: :delete, data: {confirm: 'Are you sure? This action cannot be undone'} %>
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+        <% end %>
+    </table>
+
+    <% if Time.zone.now < day_of_comp %>
+        <%= form_for :student do |f| %>
+            <%= f.text_field :name, class: 'form_control', id: "student_name" %>
+            <%= f.submit "Add Student" %>
+        <% end %>
+    <% end %>
+
+</div>

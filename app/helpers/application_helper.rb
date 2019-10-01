@@ -16,4 +16,8 @@ module ApplicationHelper
       asset_path 'default.jpg'
     end
 
+    def day_of_comp
+      Time.new(2019, 10, 4, 18)
+    end
+
 end
