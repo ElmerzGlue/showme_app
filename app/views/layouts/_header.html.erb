@@ -25,7 +25,7 @@
           <% end %>
 
           <% if current_user&.admin? %>
-            <li><%= link_to "Management", list_path, class: 'nav-link' %></li>
+            <li><%= link_to "Coaches", list_path, class: 'nav-link' %></li>
             <li><%= link_to "Trials", trials_list_path, class: 'nav-link' %></li>
           <% end %>
         </ul>
