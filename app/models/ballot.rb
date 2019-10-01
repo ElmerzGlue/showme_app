@@ -1,11 +1,18 @@
 class Ballot < ApplicationRecord
-    belongs_to :trial
-    belongs_to :attorney_1, class_name: 'Student'
-    belongs_to :attorney_2, class_name: 'Student'
-    belongs_to :attorney_3, class_name: 'Student'
-    belongs_to :witness_1, class_name: 'Student'
-    belongs_to :witness_2, class_name: 'Student'
-    belongs_to :witness_3, class_name: 'Student'
+    belongs_to :attorney_1, class_name: 'Student', optional: true
+    belongs_to :attorney_2, class_name: 'Student', optional: true
+    belongs_to :attorney_3, class_name: 'Student', optional: true
+    belongs_to :witness_1, class_name: 'Student', optional: true
+    belongs_to :witness_2, class_name: 'Student', optional: true
+    belongs_to :witness_3, class_name: 'Student', optional: true
+
+    def trial
+        Trial.where("ballot_1_id = ? OR ballot_2_id = ?", self.id, self.id).first
+    end
+
+    def finished
+        self.attorney_1 && self.attorney_2 && self.attorney_3 && self.witness_1 && self.witness_2 && self.witness_3 && self.p_points && self.d_points
+    end
 
     def score
         if self.attorney_1.team == self.trial.p_team
@@ -41,18 +48,22 @@ class Ballot < ApplicationRecord
         end
 
         if self.p_points > self.d_points
-            self.trial.p_team.ballots += 1
+            self.trial.p_team.update_attribute(:ballots, self.trial.p_team.ballots + 1)
         elsif self.d_points > self.p_points
-            self.trial.d_team.ballots += 1
+            self.trial.d_team.update_attribute(:ballots, self.trial.d_team.ballots + 1)
         elsif self.p_points == self.d_points
-            self.trial.p_team.ballots += 0.5
+            self.trial.p_team.update_attribute(:ballots, self.trial.p_team.ballots + 0.5)
+            self.trial.d_team.update_attribute(:ballots, self.trial.d_team.ballots + 0.5)
         end
 
-        self.trial.p_team.point_differential += self.p_points - self.d_points
-        self.trial.d_team.point_differential += self.d_points - self.p_points
+        self.trial.p_team.update_attribute(:points, self.trial.p_team.points + self.p_points)
+        self.trial.d_team.update_attribute(:points, self.trial.d_team.points + self.d_points)
 
-        self.p_team.save
-        self.d_team.save
+        self.trial.p_team.update_attribute(:point_differential, self.trial.p_team.point_differential + (self.p_points - self.d_points))
+        self.trial.d_team.update_attribute(:point_differential, self.trial.d_team.point_differential + (self.d_points - self.p_points))
+
+        self.trial.p_team.save
+        self.trial.d_team.save
         self.attorney_1.save
         self.attorney_2.save
         self.attorney_3.save

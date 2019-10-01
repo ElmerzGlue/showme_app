@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190925032352) do
+ActiveRecord::Schema.define(version: 20190930195634) do
 
   create_table "ballots", force: :cascade do |t|
     t.integer "trial_id"
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20190925032352) do
     t.string "team_identifier", default: "AAA", null: false
     t.integer "points", default: 0, null: false
     t.integer "point_differential", default: 0, null: false
-    t.integer "ballots", default: 0, null: false
+    t.float "ballots", default: 0.0, null: false
     t.index ["user_id"], name: "index_teams_on_user_id"
   end
 

@@ -1,12 +1,16 @@
 class JudgeBallot < ApplicationRecord
-    belongs_to :trial
-    belongs_to :attorney_1, class_name: 'Student'
-    belongs_to :attorney_2, class_name: 'Student'
-    belongs_to :attorney_3, class_name: 'Student'
-    belongs_to :witness_1, class_name: 'Student'
-    belongs_to :witness_2, class_name: 'Student'
-    belongs_to :witness_3, class_name: 'Student'
+    has_one :trial
+    belongs_to :attorney_1, class_name: 'Student', optional: true
+    belongs_to :attorney_2, class_name: 'Student', optional: true
+    belongs_to :attorney_3, class_name: 'Student', optional: true
+    belongs_to :witness_1, class_name: 'Student', optional: true
+    belongs_to :witness_2, class_name: 'Student', optional: true
+    belongs_to :witness_3, class_name: 'Student', optional: true
     
+    def finished
+        self.valid?
+    end
+
     def score
         if self.attorney_1.team == self.trial.p_team
             self.attorney_1.p_attorney_ranks += 3
@@ -46,8 +50,8 @@ class JudgeBallot < ApplicationRecord
             self.trial.d_team.ballots += 1
         end
 
-        self.p_team.save
-        self.d_team.save
+        self.trial.p_team.save
+        self.trial.d_team.save
         self.attorney_1.save
         self.attorney_2.save
         self.attorney_3.save

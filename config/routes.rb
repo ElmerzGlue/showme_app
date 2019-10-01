@@ -50,6 +50,10 @@ Rails.application.routes.draw do
 
   get '/resend', to: 'sessions#resend'
 
+  get '/trials/schedule', to: 'trials#new'
+
+  post '/trials/schedule', to: 'trials#create'
+
   root 'static#home'
 
   resources :users
