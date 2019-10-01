@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   get '/location', to: 'static#location'
 
   get '/deadlines', to: 'static#deadlines'
+  
+  get '/ballot', to: 'static#get_ballot'
+
+  get '/comments', to: 'static#get_guidelines'
 
   get '/signup', to: 'users#new'
 
@@ -65,3 +69,4 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:new, :create, :edit, :update]
 
 end
+
