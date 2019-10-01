@@ -25,6 +25,15 @@ class TrialsController < ApplicationController
         redirect_to trials_schedule_path
     end
 
+    def schedule
+        if !(current_user&.admin?)
+            flash[:danger] = "Error: Permission Denied"
+            redirect_to root_path
+            return
+        end
+        render 'schedule'
+    end
+
     private
         def trial_params
             params.require(:trial).permit(:p_team_id, :d_team_id)

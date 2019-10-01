@@ -1,0 +1,27 @@
+<% provide(:page_title, "Schedule") %>
+
+<div class="container title-panel">Schedule</div>
+
+<div class="container content-panel">
+    <table class="table">
+        <thead>
+            <tr>
+                <th style='text-align:center'>Plaintiff</th>
+                <th></th>
+                <th style='text-align:center'>Defense</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% Trial.all.each do |trial| %>
+                <% if !trial.scored %>
+                    <tr>
+                        <td align='center'><%= trial.p_team.team_identifier %></td>
+                        <td align='center'>VS.</td>
+                        <td align='center'><%= trial.d_team.team_identifier %></td>
+                    </tr>
+                <% end %>
+            <% end %>
+        </tbody>
+    </table>
+    <%= button_to( "Schedule Trials", trials_schedule_path, method: :get) %>
+</div>

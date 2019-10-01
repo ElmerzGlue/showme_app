@@ -58,6 +58,8 @@ Rails.application.routes.draw do
 
   post '/trials/schedule', to: 'trials#create'
 
+  get '/trials/list', to: 'trials#schedule'
+
   root 'static#home'
 
   resources :users
