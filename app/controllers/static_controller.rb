@@ -41,7 +41,7 @@ class StaticController < ApplicationController
   end
 
   def get_ballot
-    send_file "#{Rails.root}/public/files/Show Me Mock Trial Invitational Ballot.pdf", type: :pdf, disposition: :inline
+    send_file "#{Rails.root}/public/files/ballot.pdf", filename: "Show Me Mock Trial Ballot.pdf", type: :pdf, disposition: :inline
   end
 
   def get_guidelines
