@@ -8,4 +8,15 @@ module TrialsHelper
         end
         return arr
     end
+
+    def getStudentsForTrial(trial)
+        arr = Array.new
+        trial.p_team.students.find_each do |student|
+            arr.push(Array[student.name + " (P)", student.id])
+        end
+        trial.d_team.students.find_each do |student|
+            arr.push(Array[student.name + " (D)", student.id])
+        end
+        return arr
+    end
 end

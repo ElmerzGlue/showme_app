@@ -1,0 +1,78 @@
+<% provide(:page_title, "Scoring") %>
+<div class='title-panel container'>Scoring</div>
+
+<div class='content-panel container'>
+    <h2><strong><%= @trial.p_team.team_identifier + " VS. " + @trial.d_team.team_identifier %></strong></h2>
+    <hr>
+    <%= form_for :scoring_data do |f| %>
+    <section>
+        <h3><strong>First Jury Ballot</strong></h3>
+        <%= f.fields_for :ballot_1 do |b| %>
+            <%= b.label :p_points, "Plaintiff Points" %>
+            <%= b.number_field :p_points, class: "form-control" %>
+            <%= b.label :d_points, "Defense Points" %>
+            <%= b.number_field :d_points, class: 'form-control' %><br>
+            <%= b.label :attorney_1_id, "First Place Attorney" %>
+            <%= b.select :attorney_1_id, getStudentsForTrial(@trial), class: 'form-control' %><br>
+            <%= b.label :attorney_2_id, "Second Place Attorney" %>
+            <%= b.select :attorney_2_id, getStudentsForTrial(@trial), class: 'form-control' %><br>
+            <%= b.label :attorney_3_id, "Third Place Attorney" %>
+            <%= b.select :attorney_3_id, getStudentsForTrial(@trial), class: 'form-control' %><br>
+            <%= b.label :witness_1_id, "First Place Witness" %>
+            <%= b.select :witness_1_id, getStudentsForTrial(@trial), class: 'form-control' %><br>
+            <%= b.label :witness_2_id, "Second Place Witness" %>
+            <%= b.select :witness_2_id, getStudentsForTrial(@trial), class: 'form-control' %><br>
+            <%= b.label :witness_3_id, "Third Place Witness" %>
+            <%= b.select :witness_3_id, getStudentsForTrial(@trial), class: 'form-control' %><br>
+        <% end %>
+    </section>
+    <hr>
+
+    <section>
+        <h3><strong>Second Jury Ballot</strong></h3>
+        <%= f.fields_for :ballot_2 do |b| %>
+            <%= b.label :p_points, "Plaintiff Points" %>
+            <%= b.number_field :p_points, class: "form-control" %>
+            <%= b.label :d_points, "Defense Points" %>
+            <%= b.number_field :d_points, class: 'form-control' %><br>
+            <%= b.label :attorney_1_id, "First Place Attorney" %>
+            <%= b.select :attorney_1_id, getStudentsForTrial(@trial), class: 'form-control' %><br>
+            <%= b.label :attorney_2_id, "Second Place Attorney" %>
+            <%= b.select :attorney_2_id, getStudentsForTrial(@trial), class: 'form-control' %><br>
+            <%= b.label :attorney_3_id, "Third Place Attorney" %>
+            <%= b.select :attorney_3_id, getStudentsForTrial(@trial), class: 'form-control' %><br>
+            <%= b.label :witness_1_id, "First Place Witness" %>
+            <%= b.select :witness_1_id, getStudentsForTrial(@trial), class: 'form-control' %><br>
+            <%= b.label :witness_2_id, "Second Place Witness" %>
+            <%= b.select :witness_2_id, getStudentsForTrial(@trial), class: 'form-control' %><br>
+            <%= b.label :witness_3_id, "Third Place Witness" %>
+            <%= b.select :witness_3_id, getStudentsForTrial(@trial), class: 'form-control' %><br>
+        <% end %>
+    </section><hr>
+
+    <section>
+        <h3><strong>Judge Ballot</strong></h3>
+        <%= f.fields_for :judge_ballot do |b| %>
+            <%= b.label :p_won, "Winning Team:" %>
+            &emsp;Plaintiff
+            <%= b.radio_button :p_won, true, checked: true %>
+            &emsp;Defense
+            <%= b.radio_button :p_won, false %><br>
+            <%= b.label :attorney_1_id, "First Place Attorney" %>
+            <%= b.select :attorney_1_id, getStudentsForTrial(@trial), class: 'form-control' %><br>
+            <%= b.label :attorney_2_id, "Second Place Attorney" %>
+            <%= b.select :attorney_2_id, getStudentsForTrial(@trial), class: 'form-control' %><br>
+            <%= b.label :attorney_3_id, "Third Place Attorney" %>
+            <%= b.select :attorney_3_id, getStudentsForTrial(@trial), class: 'form-control' %><br>
+            <%= b.label :witness_1_id, "First Place Witness" %>
+            <%= b.select :witness_1_id, getStudentsForTrial(@trial), class: 'form-control' %><br>
+            <%= b.label :witness_2_id, "Second Place Witness" %>
+            <%= b.select :witness_2_id, getStudentsForTrial(@trial), class: 'form-control' %><br>
+            <%= b.label :witness_3_id, "Third Place Witness" %>
+            <%= b.select :witness_3_id, getStudentsForTrial(@trial), class: 'form-control' %><br>
+        <% end %>
+    </section>
+    <hr>
+    <%= f.submit "Score Trial" %>
+    <% end %>
+</div>

@@ -34,8 +34,49 @@ class TrialsController < ApplicationController
         render 'schedule'
     end
 
+    def score_form
+        if !(current_user&.admin?)
+            flash[:danger] = "Error: Permission Denied"
+            redirect_to root_path
+            return
+        end
+        @trial = Trial.find(params[:id])
+        render 'score'
+    end
+
+    def score
+        if !(current_user&.admin?)
+            flash[:danger] = "Error: Permission Denied"
+            redirect_to root_path
+            return
+        end
+        @trial = Trial.find(params[:id])
+        @trial.ballot_1.update_attributes(ballot_1_params)
+        @trial.ballot_2.update_attributes(ballot_2_params)
+        @trial.judge_ballot.update_attributes(judge_ballot_params)
+        if @trial.score
+            flash[:success] = "Trial Scored!"
+            redirect_to(trials_list_path, fallback_location: root_path)
+        else
+            flash[:danger] = "Error"
+        end
+        
+    end
+
     private
         def trial_params
             params.require(:trial).permit(:p_team_id, :d_team_id)
+        end
+        def ballot_1_params
+            params.require(:scoring_data).require(:ballot_1).permit(:attorney_1_id, :attorney_2_id, :attorney_3_id,
+                :witness_1_id, :witness_2_id, :witness_3_id, :p_points, :d_points)
+        end
+        def ballot_2_params
+            params.require(:scoring_data).require(:ballot_2).permit(:attorney_1_id, :attorney_2_id, :attorney_3_id,
+                :witness_1_id, :witness_2_id, :witness_3_id, :p_points, :d_points)
+        end
+        def judge_ballot_params
+            params.require(:scoring_data).require(:judge_ballot).permit(:attorney_1_id, :attorney_2_id, :attorney_3_id,
+                :witness_1_id, :witness_2_id, :witness_3_id, :p_won)
         end
 end

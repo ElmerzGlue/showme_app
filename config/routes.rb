@@ -60,6 +60,10 @@ Rails.application.routes.draw do
 
   get '/trials/list', to: 'trials#schedule'
 
+  get '/trials/:id/score', to: 'trials#score_form'
+
+  post '/trials/:id/score', to: 'trials#score'
+
   root 'static#home'
 
   resources :users
