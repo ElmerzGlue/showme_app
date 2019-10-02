@@ -59,4 +59,12 @@ class TeamsController < ApplicationController
         end
     end
 
+    def rankings
+        if !current_user&.admin?
+            flash[:danger] = "Error: Permission Denied"
+            redirect_to root_path
+        end
+        render 'rankings'
+    end
+
 end

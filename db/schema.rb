@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190930195634) do
+ActiveRecord::Schema.define(version: 20191002050016) do
 
   create_table "ballots", force: :cascade do |t|
     t.integer "trial_id"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20190930195634) do
     t.integer "witness_3_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "tiebreaker_p_won"
     t.index ["attorney_1_id"], name: "index_ballots_on_attorney_1_id"
     t.index ["attorney_2_id"], name: "index_ballots_on_attorney_2_id"
     t.index ["attorney_3_id"], name: "index_ballots_on_attorney_3_id"
@@ -73,7 +74,9 @@ ActiveRecord::Schema.define(version: 20190930195634) do
     t.string "team_identifier", default: "AAA", null: false
     t.integer "points", default: 0, null: false
     t.integer "point_differential", default: 0, null: false
-    t.float "ballots", default: 0.0, null: false
+    t.integer "ballots", default: 0, null: false
+    t.integer "wins", default: 0
+    t.integer "losses", default: 0
     t.index ["user_id"], name: "index_teams_on_user_id"
   end
 
@@ -84,6 +87,7 @@ ActiveRecord::Schema.define(version: 20190930195634) do
     t.integer "ballot_1_id"
     t.integer "ballot_2_id"
     t.integer "judge_ballot_id"
+    t.integer "round", default: 1
     t.index ["ballot_1_id"], name: "index_trials_on_ballot_1_id"
     t.index ["ballot_2_id"], name: "index_trials_on_ballot_2_id"
     t.index ["d_team_id"], name: "index_trials_on_d_team_id"

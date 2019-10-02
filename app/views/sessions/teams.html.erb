@@ -34,5 +34,9 @@
 
     </table>
 
+    <% if current_user&.admin? %>
+      <%= button_to 'Rankings', teams_rankings_path, method: :get %>
+    <% end %>
+
 
 </div>

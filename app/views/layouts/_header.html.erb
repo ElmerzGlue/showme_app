@@ -1,4 +1,4 @@
-<header class='navbar navbar-expand flex-column flex-md-row bd-navbar'>
+<header class='navbar navbar-expand flex-column flex-md-row bd-navbar' style='z-index: 1000'>
 	<nav>
   		<div class="navbar-nav-scroll">
   			<ul class="nav navbar-nav flex-row">
@@ -16,17 +16,18 @@
           <li><%= link_to "Rules", rules_path, class: 'nav-link' %></li>
           <li><%= link_to "Case Materials", case_path, class: 'nav-link' %></li>
 
+          <% if current_user&.admin? %>
+            <li><%= link_to "Coaches", list_path, class: 'nav-link' %></li>
+            <li><%= link_to "Trials", trials_list_path, class: 'nav-link' %></li>
+            <li><%= link_to "Student Rankings", students_rankings_path, class: 'nav-link' %></li>
+          <% end %>
+
           <% if !logged_in? %>
             <li><%= link_to "Login", login_path, class: 'nav-link' %></li>
             <li><%= link_to "Register Now!", signup_path, class: 'signup-button nav-link' %></li>
           <% else %>
             <li><%= link_to "Profile", profile_path, class: 'nav-link' %></li>
             <li><%= link_to "Logout", logout_path, method: :delete, class: 'nav-link' %></li>
-          <% end %>
-
-          <% if current_user&.admin? %>
-            <li><%= link_to "Coaches", list_path, class: 'nav-link' %></li>
-            <li><%= link_to "Trials", trials_list_path, class: 'nav-link' %></li>
           <% end %>
         </ul>
   		</div>

@@ -6,7 +6,9 @@
         <%= f.label :p_team_id, "Plaintiff Team" %><br>
         <%= f.select :p_team_id, getOptions, class: 'form-control' %><br>
         <%= f.label :d_team_id, "Defense Team" %><br>
-        <%= f.select :d_team_id, getOptions, class: 'form-control' %><br><br>
+        <%= f.select :d_team_id, getOptions, class: 'form-control' %><br>
+        <%= f.label :round %><br>
+        <%= f.select :round, [1, 2, 3, 4], class: 'form-control' %><br><br>
         <%= f.submit "Schedule Trial" %>
     <% end %>
 </div>

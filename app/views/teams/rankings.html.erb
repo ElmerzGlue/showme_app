@@ -8,10 +8,24 @@
                 <th>Rank</th>
                 <th>School</th>
                 <th>Code</th>
+                <th>Record</th>
                 <th>Ballots</th>
                 <th>Points</th>
                 <th>Point Differential</th>
             </tr>
         </thead>
+        <tbody>
+            <% i = 1; Team.order(wins: :desc, ballots: :desc, points: :desc, point_differential: :desc).each do |t| %>
+                <tr>
+                    <td><%= i %></td>
+                    <td><%= t.user.school %></td>
+                    <td><%= t.team_identifier %></td>
+                    <td><%= t.wins.to_s + "-" + t.losses.to_s %></td>
+                    <td><%= t.ballots %></td>
+                    <td><%= t.points %></td>
+                    <td><%= t.point_differential %></td>
+                </tr>
+            <% i += 1; end %>
+        </tbody>
     </table>
 </div>

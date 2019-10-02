@@ -52,8 +52,11 @@ class Ballot < ApplicationRecord
         elsif self.d_points > self.p_points
             self.trial.d_team.update_attribute(:ballots, self.trial.d_team.ballots + 1)
         elsif self.p_points == self.d_points
-            self.trial.p_team.update_attribute(:ballots, self.trial.p_team.ballots + 0.5)
-            self.trial.d_team.update_attribute(:ballots, self.trial.d_team.ballots + 0.5)
+            if self.tiebreaker_p_won
+                self.trial.p_team.update_attribute(:ballots, self.trial.p_team.ballots + 1)
+            else
+                self.trial.d_team.update_attribute(:ballots, self.trial.d_team.ballots + 1)
+            end
         end
 
         self.trial.p_team.update_attribute(:points, self.trial.p_team.points + self.p_points)

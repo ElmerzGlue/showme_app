@@ -17,6 +17,7 @@ class TrialsController < ApplicationController
         @trial = Trial.new
         @trial.p_team = Team.find_by_id(trial_params[:p_team_id])
         @trial.d_team = Team.find_by_id(trial_params[:d_team_id])
+        @trial.round = trial_params[:round]
         if @trial.save
             flash[:success] = "Trial scheduled between " + @trial.p_team.user.school + " and " + @trial.d_team.user.school + "."
         else
@@ -65,15 +66,15 @@ class TrialsController < ApplicationController
 
     private
         def trial_params
-            params.require(:trial).permit(:p_team_id, :d_team_id)
+            params.require(:trial).permit(:p_team_id, :d_team_id, :round)
         end
         def ballot_1_params
             params.require(:scoring_data).require(:ballot_1).permit(:attorney_1_id, :attorney_2_id, :attorney_3_id,
-                :witness_1_id, :witness_2_id, :witness_3_id, :p_points, :d_points)
+                :witness_1_id, :witness_2_id, :witness_3_id, :p_points, :d_points, :tiebreaker_p_won)
         end
         def ballot_2_params
             params.require(:scoring_data).require(:ballot_2).permit(:attorney_1_id, :attorney_2_id, :attorney_3_id,
-                :witness_1_id, :witness_2_id, :witness_3_id, :p_points, :d_points)
+                :witness_1_id, :witness_2_id, :witness_3_id, :p_points, :d_points, :tiebreaker_p_won)
         end
         def judge_ballot_params
             params.require(:scoring_data).require(:judge_ballot).permit(:attorney_1_id, :attorney_2_id, :attorney_3_id,

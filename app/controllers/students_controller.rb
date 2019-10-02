@@ -21,4 +21,12 @@ class StudentsController < ApplicationController
             redirect_back(fallback_location: root_path)
         end
     end
+
+    def rankings
+        if !current_user&.admin?
+            flash[:danger] = 'Error: Permission Denied'
+            redirect_to root_path
+        end
+        render 'rankings'
+    end
 end
