@@ -32,7 +32,7 @@
                 <tr>
                     <td><%= student.name %></td>
                     <td>
-                        <% if Time.zone.now < day_of_comp %>
+                        <% if Time.zone.now < day_of_comp || current_user&.admin? %>
                             <%= button_to "Delete", {controller: 'students', action: 'delete', id: student.id}, method: :delete, data: {confirm: 'Are you sure? This action cannot be undone'} %>
                         <% end %>
                     </td>
