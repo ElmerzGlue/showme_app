@@ -41,7 +41,7 @@
         <% end %>
     </table>
 
-    <% if Time.zone.now < day_of_comp %>
+    <% if Time.zone.now < day_of_comp || current_user&.admin? %>
         <%= form_for :student do |f| %>
             <%= f.text_field :name, class: 'form_control', id: "student_name" %>
             <%= f.submit "Add Student" %>
