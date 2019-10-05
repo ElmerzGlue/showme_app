@@ -65,8 +65,6 @@ class Ballot < ApplicationRecord
         self.trial.p_team.update_attribute(:point_differential, self.trial.p_team.point_differential + (self.p_points - self.d_points))
         self.trial.d_team.update_attribute(:point_differential, self.trial.d_team.point_differential + (self.d_points - self.p_points))
 
-        self.trial.p_team.save
-        self.trial.d_team.save
         self.attorney_1.save
         self.attorney_2.save
         self.attorney_3.save
