@@ -15,6 +15,8 @@ class Ballot < ApplicationRecord
     end
 
     def score
+	self.trial.p_team.reload
+	self.trial.d_team.reload
         if self.attorney_1.team == self.trial.p_team
             self.attorney_1.p_attorney_ranks += 3
         else
