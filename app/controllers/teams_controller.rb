@@ -37,7 +37,7 @@ class TeamsController < ApplicationController
     end
 
     def addStudent
-        if Time.zone.now > day_of_comp
+        if Time.zone.now > day_of_comp && !current_user.admin?
             flash[:danger] = "Competition has started, teams are locked!"
             redirect_back(fallback_location: root_path)
             return nil
